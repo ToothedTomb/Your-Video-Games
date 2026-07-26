@@ -1,0 +1,75 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">    
+    <title>Your Video Games</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Your Video Games</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-link" style="border: none; background: none; color: rgba(255,255,255,.55); text-decoration: none; padding: 0; cursor: pointer;">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h1 class="card-title text-danger">Delete Account</h1>
+                        <hr>
+                        <p class="card-text">
+                            <strong> Warning:</strong> This action is <strong>permanent</strong> and cannot be undone.
+                        </p>
+                        <p class="card-text">
+                            You are about to delete your account: <strong>{{ user.username }}</strong>
+                        </p>
+                        <p class="card-text text-muted">
+                            This will permanently delete:
+                            <ul>
+                                <li>Your account information</li>
+                                <li>All {{ user.Games.count }} games in your collection</li>
+                            </ul>
+                        </p>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="d-flex gap-2">
+                                <a href="{% url 'information' %}" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to permanently delete your account? This cannot be undone!');">
+                                    Yes, Delete My Account
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% bootstrap_javascript %}
+    <p class="text-center mt-4">Project made by Jonathan Steadman</p>
+</body>
+</html>

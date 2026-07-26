@@ -1,0 +1,43 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">    
+    <title>Your Video Games</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Your Video Games</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login/">Login</a>
+        </li>
+                <li class="nav-item">
+          <a class="nav-link" href="{% url 'SignUp' %}">Signup</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    {% bootstrap_javascript %}
+    <u><h1>Your Video Games:</h1></u>
+    <p>Welcome to your gaming hub! This page displays every game you've added to YourVideoGames. Each listing shows the game name, platform, genre, and your rating at a glance. You can sort your collection however you like – by title, platform, or rating. Need to find something specific? The search and filter tools make it easy to locate any game instantly. Click on any game card to view more details, edit your review, or update its status. Your entire gaming library is just a click away!</p>
+            <img src="{% static 'images/SuperTuxKartHomePage.png' %}" width=100% alt="My Image">
+            <p>Project made by Jonathan Steadman</p>
+</body>
+</html>
